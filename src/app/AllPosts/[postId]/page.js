@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import DeleteButton from "@/app/components/DeleteButton";
 
 export default async function IndividualPostPage({ params }) {
   const { postId } = await params;
@@ -40,6 +41,7 @@ export default async function IndividualPostPage({ params }) {
   return (
     <>
       <section>
+        <Link href={"/AllPosts"}>Go back to all posts</Link>
         <h1>{mainContent.title}</h1>
         <h2>{mainContent.date_posted.toString()}</h2>
         <Image
@@ -66,12 +68,13 @@ export default async function IndividualPostPage({ params }) {
         <h4>Comments:</h4>
         {commentsData.map((comment) => {
           return (
-            <>
+            <div key={comment.id}>
               <h5>{comment.username}</h5>
 
               <h6>{comment.comment_date.toString()}</h6>
               <p>{comment.comment_content}</p>
-            </>
+              <DeleteButton commentId={comment.id} postId={postId} />
+            </div>
           );
         })}
       </section>
