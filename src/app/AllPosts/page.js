@@ -15,11 +15,18 @@ export default async function AllPostsPage({ searchParams }) {
     });
   }
   return (
-    <section>
+    <section className="">
       <Link href={"/"}>Go back to home</Link>
-      <h2>All Posts</h2>
-      <Link href={"/AllPosts?sort=asc"}>ASC</Link>
-      <Link href={"/AllPosts?sort=desc"}>DESC</Link>
+      <h3>All Posts</h3>
+      <p>Sort By:</p>
+      <ul>
+        <li>
+          <Link href={"/AllPosts?sort=asc"}>Title A-Z</Link>
+        </li>
+        <li>
+          <Link href={"/AllPosts?sort=desc"}>Title Z-A</Link>
+        </li>
+      </ul>
       {rows.map((post) => {
         return (
           <ul key={post.id}>

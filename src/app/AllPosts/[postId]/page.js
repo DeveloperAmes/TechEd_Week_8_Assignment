@@ -57,7 +57,7 @@ export default async function IndividualPostPage({ params }) {
         />
         <article>
           {mainCopy.map((paragraph) => {
-            return <p key={postId}>{paragraph}</p>;
+            return <p>{paragraph}</p>;
           })}
         </article>
       </section>
