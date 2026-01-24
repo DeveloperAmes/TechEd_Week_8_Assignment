@@ -32,15 +32,13 @@ export default async function HomePage() {
                     />
                   </Link>
                 </div>
-                <div>
-                  <h3>
-                    Or view <Link href="/AllPosts">all our posts</Link>
-                  </h3>
-                </div>
               </section>
             );
           })}
         </div>
+        <h3>
+          Or view <Link href="/AllPosts">all our posts</Link>
+        </h3>
       </section>
     </main>
   );
