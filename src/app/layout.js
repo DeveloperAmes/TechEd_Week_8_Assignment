@@ -1,4 +1,17 @@
+import { Overlock } from "next/font/google";
 import "./globals.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+const mainFont = Overlock({
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const boldFont = Overlock({
+  subsets: ["latin"],
+  weight: "700",
+});
 
 export const metadata = {
   title:
@@ -10,7 +23,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={mainFont.className}>
+        <Header />
+        {children}
+
+        <Footer />
+      </body>
     </html>
   );
 }

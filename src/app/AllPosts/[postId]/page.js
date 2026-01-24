@@ -12,6 +12,8 @@ export default async function IndividualPostPage({ params }) {
     [postId],
   );
   const mainContent = mainContentQuery.rows[0];
+  const mainCopy = mainContent.content.split("\r\n");
+
   const commentsQuery = await db.query(
     `SELECT * FROM facts_posts_comments WHERE fact_post_id = $1`,
     [postId],
@@ -38,22 +40,29 @@ export default async function IndividualPostPage({ params }) {
     revalidatePath(`/AllPosts/${postId}`);
     redirect(`/AllPosts/${postId}`);
   }
+
+  const dateString = mainContent.date_posted.toString().slice(0, 15);
+
   return (
     <>
       <section>
         <Link href={"/AllPosts"}>Go back to all posts</Link>
-        <h1>{mainContent.title}</h1>
-        <h2>{mainContent.date_posted.toString()}</h2>
+        <h2>{mainContent.title}</h2>
+        <h3>{dateString}</h3>
         <Image
           src={mainContent.img_url}
           alt={mainContent.img_alt}
           width="400"
           height="300"
         />
-        <article>{mainContent.content}</article>
+        <article>
+          {mainCopy.map((paragraph) => {
+            return <p key={postId}>{paragraph}</p>;
+          })}
+        </article>
       </section>
       <section>
-        <h3>Share Your Thoughts:</h3>
+        <h4>Share Your Thoughts:</h4>
         <form action={handleSubmit}>
           <label htmlFor="username">Name:</label>
           <input type="text" name="username" required />
@@ -65,13 +74,13 @@ export default async function IndividualPostPage({ params }) {
         </form>
       </section>
       <section>
-        <h4>Comments:</h4>
+        <h5>Comments:</h5>
         {commentsData.map((comment) => {
           return (
             <div key={comment.id}>
-              <h5>{comment.username}</h5>
+              <h6>{comment.username}</h6>
 
-              <h6>{comment.comment_date.toString()}</h6>
+              <p>{comment.comment_date.toString()}</p>
               <p>{comment.comment_content}</p>
               <DeleteButton commentId={comment.id} postId={postId} />
             </div>

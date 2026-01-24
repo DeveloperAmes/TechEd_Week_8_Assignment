@@ -16,7 +16,8 @@ export default async function AllPostsPage({ searchParams }) {
   }
   return (
     <section>
-      <h1>All Posts</h1>
+      <Link href={"/"}>Go back to home</Link>
+      <h2>All Posts</h2>
       <Link href={"/AllPosts?sort=asc"}>ASC</Link>
       <Link href={"/AllPosts?sort=desc"}>DESC</Link>
       {rows.map((post) => {
