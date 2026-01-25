@@ -16,10 +16,12 @@ export default async function AllPostsPage({ searchParams }) {
   }
   return (
     <section className="">
-      <Link href={"/"}>Go back to home</Link>
-      <h3>All Posts</h3>
+      <Link href={"/"} className="border-2 p-2">
+        Go back to home
+      </Link>
+      <h3 className="text-xl m-2 text-center">All Posts</h3>
       <p>Sort By:</p>
-      <ul>
+      <ul className="flex justify-around">
         <li>
           <Link href={"/AllPosts?sort=asc"}>Title A-Z</Link>
         </li>
@@ -30,8 +32,10 @@ export default async function AllPostsPage({ searchParams }) {
       {rows.map((post) => {
         return (
           <ul key={post.id}>
-            <li>
-              <Link href={`/AllPosts/${post.id}`}>{post.title}</Link>
+            <li className="bg-black text-white p-2 flex mb-3">
+              <Link href={`/AllPosts/${post.id}`} className="mr-2">
+                {post.title}
+              </Link>
               <Image
                 src={post.img_url}
                 width="200"

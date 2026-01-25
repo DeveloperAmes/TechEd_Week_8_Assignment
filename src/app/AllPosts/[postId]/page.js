@@ -41,14 +41,16 @@ export default async function IndividualPostPage({ params }) {
     redirect(`/AllPosts/${postId}`);
   }
 
-  const dateString = mainContent.date_posted.toString().slice(0, 15);
+  const mainDateString = mainContent.date_posted.toString().slice(0, 15);
 
   return (
     <>
       <section>
-        <Link href={"/AllPosts"}>Go back to all posts</Link>
-        <h2>{mainContent.title}</h2>
-        <h3>{dateString}</h3>
+        <Link href={"/AllPosts"} className="border-2 p-2">
+          Go back to all posts
+        </Link>
+        <h2 className="text-xl mt-2">{mainContent.title}</h2>
+        <h3>{mainDateString}</h3>
         <Image
           src={mainContent.img_url}
           alt={mainContent.img_alt}
@@ -57,31 +59,40 @@ export default async function IndividualPostPage({ params }) {
         />
         <article>
           {mainCopy.map((paragraph) => {
-            return <p>{paragraph}</p>;
+            return (
+              <p key={postId}>
+                {paragraph}
+                <br />
+              </p>
+            );
           })}
         </article>
       </section>
-      <section>
-        <h4>Share Your Thoughts:</h4>
-        <form action={handleSubmit}>
+      <section className="border-2 p-2 mt-2">
+        <h4 className="text-center text-xl font-bold">Share Your Thoughts:</h4>
+        <form action={handleSubmit} className="flex flex-col items-center">
           <label htmlFor="username">Name:</label>
           <input type="text" name="username" required />
           <label htmlFor="comment_date">Date:</label>
           <input type="date" name="comment_date" required />
           <label htmlFor="comment_content">Comments:</label>
-          <input type="text" name="comment_content" required />
-          <button type="submit">Submit</button>
+          <textarea type="text" name="comment_content" rows="4" required />
+          <button type="submit" className="border-2 p-1 mt-2">
+            Submit
+          </button>
         </form>
       </section>
-      <section>
-        <h5>Comments:</h5>
+      <section className="bg-black text-white mt-4 pb-2">
+        <h5 className="text-center text-xl font-bold pt-2 pb-2">Comments:</h5>
         {commentsData.map((comment) => {
           return (
-            <div key={comment.id}>
-              <h6>{comment.username}</h6>
-
-              <p>{comment.comment_date.toString()}</p>
-              <p>{comment.comment_content}</p>
+            <div
+              key={comment.id}
+              className="bg-white text-black p-3 border-2 m-4"
+            >
+              <p>{comment.comment_date.toString().slice(0, 15)}</p>
+              <h6 className="font-bold">{comment.username} says...</h6>
+              <p className="mb-2">"{comment.comment_content}"</p>
               <DeleteButton commentId={comment.id} postId={postId} />
             </div>
           );

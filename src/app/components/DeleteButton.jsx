@@ -12,7 +12,9 @@ export default function DeleteButton({ commentId, postId }) {
   }
   return (
     <form action={handleDelete}>
-      <button type="submit">Delete comment</button>
+      <button type="submit" className="p-1 border-2">
+        Delete comment
+      </button>
     </form>
   );
 }
