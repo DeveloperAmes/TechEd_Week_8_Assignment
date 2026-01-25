@@ -14,7 +14,7 @@ export default async function HomePage() {
           height={400}
         />
       </section>
-      <section className="border-2 p-4">
+      <section className="border-2 p-4 popular-posts-section">
         <h3 className="text-center text-xl mb-2">
           Check out some of our most popular posts:
         </h3>
@@ -24,7 +24,7 @@ export default async function HomePage() {
               <Link
                 key={post.id}
                 href={`/AllPosts/${post.id}`}
-                className="bg-black text-white p-2"
+                className="bg-black text-white p-2 md:text-center"
               >
                 {post.title}
                 <Image
@@ -32,13 +32,13 @@ export default async function HomePage() {
                   width="100"
                   height="50"
                   alt={post.img_alt}
-                  className="popular-posts-img flex-none"
+                  className="popular-posts-img flex-none md:border-white md:border-2"
                 />
               </Link>
             );
           })}
         </div>
-        <h3 className="text-center border-2 mt-2 pt-2 pb-2">
+        <h3 className="text-center border-2 mt-2 pt-2 pb-2 md:border-none md: text-xl">
           Or <Link href="/AllPosts">view all our posts</Link>
         </h3>
       </section>

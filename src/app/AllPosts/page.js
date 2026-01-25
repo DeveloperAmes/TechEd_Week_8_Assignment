@@ -15,7 +15,7 @@ export default async function AllPostsPage({ searchParams }) {
     });
   }
   return (
-    <section className="">
+    <section className="mt-4 md:max-w-200">
       <Link href={"/"} className="border-2 p-2">
         Go back to home
       </Link>
@@ -32,8 +32,8 @@ export default async function AllPostsPage({ searchParams }) {
       {rows.map((post) => {
         return (
           <ul key={post.id}>
-            <li className="bg-black text-white p-2 flex mb-3">
-              <Link href={`/AllPosts/${post.id}`} className="mr-2">
+            <li className="bg-black text-white p-2 flex mb-3 justify-between">
+              <Link href={`/AllPosts/${post.id}`} className="text-xl w-140">
                 {post.title}
               </Link>
               <Image
@@ -41,6 +41,7 @@ export default async function AllPostsPage({ searchParams }) {
                 width="200"
                 height="150"
                 alt={post.img_alt}
+                className="md:m-0"
               />
             </li>
           </ul>

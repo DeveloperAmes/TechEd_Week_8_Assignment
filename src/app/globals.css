@@ -67,3 +67,33 @@ label,
 input {
   margin-bottom: 0.3rem;
 }
+
+@media (min-width: 400) {
+  body {
+    margin: 1rem 4rem;
+  }
+  .popular-posts-section,
+  .comments-form,
+  .prev-comments {
+    max-width: 20rem;
+    margin: auto;
+  }
+}
+
+@media (min-width: 800) {
+  body {
+    margin: 1rem 6rem;
+  }
+  .popular-posts-section,
+  .comments-form,
+  .prev-comments {
+    max-width: 40rem;
+    margin: auto;
+  }
+}
+
+@media (min-width: 900) {
+  body {
+    margin: 1rem 12rem;
+  }
+}

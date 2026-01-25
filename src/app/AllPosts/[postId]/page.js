@@ -45,7 +45,7 @@ export default async function IndividualPostPage({ params }) {
 
   return (
     <>
-      <section>
+      <section className="mt-4 mb-4">
         <Link href={"/AllPosts"} className="border-2 p-2">
           Go back to all posts
         </Link>
@@ -58,9 +58,9 @@ export default async function IndividualPostPage({ params }) {
           height="300"
         />
         <article>
-          {mainCopy.map((paragraph) => {
+          {mainCopy.map((paragraph, index) => {
             return (
-              <p key={postId}>
+              <p key={index}>
                 {paragraph}
                 <br />
               </p>
@@ -68,7 +68,7 @@ export default async function IndividualPostPage({ params }) {
           })}
         </article>
       </section>
-      <section className="border-2 p-2 mt-2">
+      <section className="comments-form border-2 p-2 mt-2">
         <h4 className="text-center text-xl font-bold">Share Your Thoughts:</h4>
         <form action={handleSubmit} className="flex flex-col items-center">
           <label htmlFor="username">Name:</label>
@@ -82,7 +82,7 @@ export default async function IndividualPostPage({ params }) {
           </button>
         </form>
       </section>
-      <section className="bg-black text-white mt-4 pb-2">
+      <section className="prev-comments bg-black text-white mt-4 pb-2">
         <h5 className="text-center text-xl font-bold pt-2 pb-2">Comments:</h5>
         {commentsData.map((comment) => {
           return (
@@ -92,7 +92,7 @@ export default async function IndividualPostPage({ params }) {
             >
               <p>{comment.comment_date.toString().slice(0, 15)}</p>
               <h6 className="font-bold">{comment.username} says...</h6>
-              <p className="mb-2">"{comment.comment_content}"</p>
+              <p className="mb-2">&quot;{comment.comment_content}&quot;</p>
               <DeleteButton commentId={comment.id} postId={postId} />
             </div>
           );
